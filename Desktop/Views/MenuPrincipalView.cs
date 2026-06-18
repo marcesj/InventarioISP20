@@ -30,8 +30,14 @@ namespace Desktop.Views
         private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CategoriasView categoriasView = new CategoriasView();
-            categoriasView.MdiParent = this; 
+            categoriasView.MdiParent = this;
             categoriasView.ShowDialog();
+        }
+
+        private void SubMenuClientes_Click(object sender, EventArgs e)
+        {
+            ClientesView clientesView = new();
+            clientesView.ShowDialog();
         }
     }
 }
