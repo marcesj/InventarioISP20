@@ -59,10 +59,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold | FontStyle.Italic);
+            label1.Font = new Font("Harlow Solid Italic", 22.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
-            label1.Size = new Size(118, 37);
+            label1.Size = new Size(142, 46);
             label1.TabIndex = 0;
             label1.Text = "Clientes";
             // 
@@ -86,6 +86,7 @@
             tabPageLista.Controls.Add(label2);
             tabPageLista.Controls.Add(btnBuscar);
             tabPageLista.Controls.Add(dataGridClientes);
+            tabPageLista.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tabPageLista.Location = new Point(4, 29);
             tabPageLista.Name = "tabPageLista";
             tabPageLista.Padding = new Padding(3);
@@ -100,68 +101,74 @@
             label7.AutoSize = true;
             label7.Location = new Point(16, 32);
             label7.Name = "label7";
-            label7.Size = new Size(0, 20);
+            label7.Size = new Size(0, 25);
             label7.TabIndex = 7;
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(684, 286);
+            btnEliminar.BackColor = Color.FromArgb(128, 255, 255);
+            btnEliminar.Location = new Point(670, 305);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(94, 29);
+            btnEliminar.Size = new Size(94, 48);
             btnEliminar.TabIndex = 6;
             btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(670, 204);
+            btnModificar.BackColor = Color.FromArgb(128, 255, 255);
+            btnModificar.Location = new Point(657, 203);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(94, 29);
+            btnModificar.Size = new Size(107, 29);
             btnModificar.TabIndex = 5;
             btnModificar.Text = "Modificar";
-            btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.UseVisualStyleBackColor = false;
             btnModificar.Click += btnModificar_Click;
             // 
             // btnNuevo
             // 
-            btnNuevo.Location = new Point(656, 122);
+            btnNuevo.BackColor = Color.FromArgb(128, 255, 255);
+            btnNuevo.Location = new Point(670, 102);
             btnNuevo.Name = "btnNuevo";
-            btnNuevo.Size = new Size(94, 29);
+            btnNuevo.Size = new Size(94, 33);
             btnNuevo.TabIndex = 4;
             btnNuevo.Text = "Nuevo";
-            btnNuevo.UseVisualStyleBackColor = true;
+            btnNuevo.UseVisualStyleBackColor = false;
             btnNuevo.Click += btnNuevo_Click;
             // 
             // txtBusqueda
             // 
             txtBusqueda.Location = new Point(141, 72);
             txtBusqueda.Name = "txtBusqueda";
-            txtBusqueda.Size = new Size(469, 27);
+            txtBusqueda.Size = new Size(469, 31);
             txtBusqueda.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(42, 79);
+            label2.BackColor = Color.FromArgb(128, 255, 255);
+            label2.Location = new Point(42, 72);
             label2.Name = "label2";
-            label2.Size = new Size(52, 20);
+            label2.Size = new Size(69, 25);
             label2.TabIndex = 2;
             label2.Text = "Buscar";
             label2.Click += label2_Click;
             // 
             // btnBuscar
             // 
+            btnBuscar.BackColor = Color.FromArgb(128, 255, 255);
             btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
             btnBuscar.IconColor = Color.DimGray;
             btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnBuscar.IconSize = 30;
             btnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBuscar.Location = new Point(636, 31);
+            btnBuscar.Location = new Point(606, 6);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(114, 51);
             btnBuscar.TabIndex = 1;
             btnBuscar.Text = "Buscar";
-            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.UseVisualStyleBackColor = false;
             btnBuscar.Click += btnBuscar_Click;
             // 
             // dataGridClientes
@@ -224,6 +231,7 @@
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.Silver;
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar.IconChar = FontAwesome.Sharp.IconChar.None;
             btnCancelar.IconColor = Color.Black;
             btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -239,6 +247,7 @@
             // 
             btnGuardar.BackColor = Color.Silver;
             btnGuardar.BackgroundImageLayout = ImageLayout.Center;
+            btnGuardar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnGuardar.IconChar = FontAwesome.Sharp.IconChar.None;
             btnGuardar.IconColor = Color.Black;
             btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -291,7 +300,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(128, 128, 255);
-            ClientSize = new Size(860, 484);
+            ClientSize = new Size(963, 519);
             Controls.Add(tabControl);
             Controls.Add(label1);
             Name = "ClientesView";
