@@ -163,7 +163,7 @@
             btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnBuscar.IconSize = 30;
             btnBuscar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBuscar.Location = new Point(606, 6);
+            btnBuscar.Location = new Point(636, 19);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(114, 51);
             btnBuscar.TabIndex = 1;

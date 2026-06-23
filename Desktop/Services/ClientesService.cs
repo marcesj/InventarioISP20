@@ -1,4 +1,5 @@
 ﻿using Desktop.Models;
+using DotNetEnv;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,9 @@ namespace Desktop.Services
 
         public ClientesService()
         {
+            Env.Load("../../../");
+            var apikey = Environment.GetEnvironmentVariable("apikey_supabase");
+
             // Inicializar el HttpClient y configurar la base address y los headers necesarios
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(urlApi);
