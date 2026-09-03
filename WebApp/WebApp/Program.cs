@@ -8,6 +8,12 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 
+// Agrega esta configuración para resolver el warning de redirección HTTPS
+builder.Services.AddHttpsRedirection(options =>
+{
+    options.HttpsPort = 7226;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

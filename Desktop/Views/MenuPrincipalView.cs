@@ -39,5 +39,23 @@ namespace Desktop.Views
             ClientesView clientesView = new();
             clientesView.ShowDialog();
         }
+
+        private void subMenuPaqueteria_Click(object sender, EventArgs e)
+        {
+            PaqueteriaView paqueteriaView = new();
+            paqueteriaView.ShowDialog();
+        }
+
+        private void SubMenuProbandoGemini_Click(object sender, EventArgs e)
+        {
+            ProbandoAI_Gemini probandogemini = new();
+            probandogemini.ShowDialog();
+        }
+
+        private void subMenuNvidia_Click(object sender, EventArgs e)
+        {
+            ProbandoNvidiaIA probandoNvidiaIA = new();
+            probandoNvidiaIA.ShowDialog();
+        }
     }
 }

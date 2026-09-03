@@ -28,31 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            BtnSaludo = new FontAwesome.Sharp.IconButton();
             menuStrip1 = new MenuStrip();
             iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
             SubMenuArticulos = new FontAwesome.Sharp.IconMenuItem();
             categoriasToolStripMenuItem = new ToolStripMenuItem();
+            SubMenuClientes = new FontAwesome.Sharp.IconMenuItem();
+            subMenuPaqueteria = new FontAwesome.Sharp.IconMenuItem();
+            SubMenuProbandoGemini = new FontAwesome.Sharp.IconMenuItem();
             SubMenuSalir = new FontAwesome.Sharp.IconMenuItem();
             SubMenuSalirDelSistema = new FontAwesome.Sharp.IconMenuItem();
-            SubMenuClientes = new FontAwesome.Sharp.IconMenuItem();
+            subMenuNvidia = new FontAwesome.Sharp.IconMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // BtnSaludo
-            // 
-            BtnSaludo.BackColor = Color.LawnGreen;
-            BtnSaludo.IconChar = FontAwesome.Sharp.IconChar.ThinkPeaks;
-            BtnSaludo.IconColor = Color.Black;
-            BtnSaludo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            BtnSaludo.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnSaludo.Location = new Point(12, 381);
-            BtnSaludo.Name = "BtnSaludo";
-            BtnSaludo.Size = new Size(176, 57);
-            BtnSaludo.TabIndex = 0;
-            BtnSaludo.Text = "Saludo";
-            BtnSaludo.UseVisualStyleBackColor = false;
-            BtnSaludo.Click += BtnSaludo_Click;
             // 
             // menuStrip1
             // 
@@ -66,7 +53,7 @@
             // 
             // iconMenuItem1
             // 
-            iconMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { SubMenuArticulos, categoriasToolStripMenuItem, SubMenuClientes });
+            iconMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { SubMenuArticulos, categoriasToolStripMenuItem, SubMenuClientes, subMenuPaqueteria, SubMenuProbandoGemini, subMenuNvidia });
             iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.House;
             iconMenuItem1.IconColor = Color.Black;
             iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -80,16 +67,46 @@
             SubMenuArticulos.IconColor = Color.Black;
             SubMenuArticulos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             SubMenuArticulos.Name = "SubMenuArticulos";
-            SubMenuArticulos.Size = new Size(224, 26);
+            SubMenuArticulos.Size = new Size(244, 26);
             SubMenuArticulos.Text = "Artículos";
             SubMenuArticulos.Click += SubMenuArticulos_Click;
             // 
             // categoriasToolStripMenuItem
             // 
             categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
-            categoriasToolStripMenuItem.Size = new Size(224, 26);
+            categoriasToolStripMenuItem.Size = new Size(244, 26);
             categoriasToolStripMenuItem.Text = "Categorias";
             categoriasToolStripMenuItem.Click += categoriasToolStripMenuItem_Click;
+            // 
+            // SubMenuClientes
+            // 
+            SubMenuClientes.IconChar = FontAwesome.Sharp.IconChar.Users;
+            SubMenuClientes.IconColor = Color.Black;
+            SubMenuClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            SubMenuClientes.Name = "SubMenuClientes";
+            SubMenuClientes.Size = new Size(244, 26);
+            SubMenuClientes.Text = "Clientes";
+            SubMenuClientes.Click += SubMenuClientes_Click;
+            // 
+            // subMenuPaqueteria
+            // 
+            subMenuPaqueteria.IconChar = FontAwesome.Sharp.IconChar.None;
+            subMenuPaqueteria.IconColor = Color.Black;
+            subMenuPaqueteria.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            subMenuPaqueteria.Name = "subMenuPaqueteria";
+            subMenuPaqueteria.Size = new Size(244, 26);
+            subMenuPaqueteria.Text = "Paqueteria";
+            subMenuPaqueteria.Click += subMenuPaqueteria_Click;
+            // 
+            // SubMenuProbandoGemini
+            // 
+            SubMenuProbandoGemini.IconChar = FontAwesome.Sharp.IconChar.None;
+            SubMenuProbandoGemini.IconColor = Color.Black;
+            SubMenuProbandoGemini.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            SubMenuProbandoGemini.Name = "SubMenuProbandoGemini";
+            SubMenuProbandoGemini.Size = new Size(244, 26);
+            SubMenuProbandoGemini.Text = "PROBANDO AI GEMINI";
+            SubMenuProbandoGemini.Click += SubMenuProbandoGemini_Click;
             // 
             // SubMenuSalir
             // 
@@ -111,15 +128,15 @@
             SubMenuSalirDelSistema.Text = "Salir del Sistema";
             SubMenuSalirDelSistema.Click += SubMenuSalirDelSistema_Click;
             // 
-            // SubMenuClientes
+            // subMenuNvidia
             // 
-            SubMenuClientes.IconChar = FontAwesome.Sharp.IconChar.Users;
-            SubMenuClientes.IconColor = Color.Black;
-            SubMenuClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            SubMenuClientes.Name = "SubMenuClientes";
-            SubMenuClientes.Size = new Size(224, 26);
-            SubMenuClientes.Text = "Clientes";
-            SubMenuClientes.Click += SubMenuClientes_Click;
+            subMenuNvidia.IconChar = FontAwesome.Sharp.IconChar.None;
+            subMenuNvidia.IconColor = Color.Black;
+            subMenuNvidia.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            subMenuNvidia.Name = "subMenuNvidia";
+            subMenuNvidia.Size = new Size(244, 26);
+            subMenuNvidia.Text = "IA Nvidia";
+            subMenuNvidia.Click += subMenuNvidia_Click;
             // 
             // MenuPrincipalView
             // 
@@ -127,7 +144,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(800, 450);
-            Controls.Add(BtnSaludo);
             Controls.Add(menuStrip1);
             ForeColor = Color.Blue;
             MainMenuStrip = menuStrip1;
@@ -141,8 +157,6 @@
         }
 
         #endregion
-
-        private FontAwesome.Sharp.IconButton BtnSaludo;
         private MenuStrip menuStrip1;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem1;
         private FontAwesome.Sharp.IconMenuItem SubMenuArticulos;
@@ -150,5 +164,8 @@
         private FontAwesome.Sharp.IconMenuItem SubMenuSalirDelSistema;
         private ToolStripMenuItem categoriasToolStripMenuItem;
         private FontAwesome.Sharp.IconMenuItem SubMenuClientes;
+        private FontAwesome.Sharp.IconMenuItem subMenuPaqueteria;
+        private FontAwesome.Sharp.IconMenuItem SubMenuProbandoGemini;
+        private FontAwesome.Sharp.IconMenuItem subMenuNvidia;
     }
 }
