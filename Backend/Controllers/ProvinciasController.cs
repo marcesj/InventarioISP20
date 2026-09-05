@@ -21,38 +21,40 @@ namespace Backend.Controllers
             _context = context;
         }
 
-        // GET: api/Localidades
+        // GET: api/Provincias
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Localidad>>> GetLocalidades()
+        public async Task<ActionResult<IEnumerable<Provincia>>> GetProvincias()
         {
-            return await _context.Localidades.ToListAsync();
+            return await _context.Provincias
+            .Include(p => p.Pais)  //Incluimos la entidad relacionada Pais
+            .ToListAsync();
         }
 
-        // GET: api/Localidades/5
+        // GET: api/Provincia/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Localidad>> GetLocalidad(int id)
+        public async Task<ActionResult<Provincia>> GetProvincias(int id)
         {
-            var localidad = await _context.Localidades.FindAsync(id);
+            var provincia = await _context.Provincias.FindAsync(id);
 
-            if (localidad == null)
+            if (provincia == null)
             {
                 return NotFound();
             }
 
-            return localidad;
+            return provincia;
         }
 
-        // PUT: api/Localidades/5
+        // PUT: api/Provincias/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLocalidad(int id, Localidad localidad)
+        public async Task<IActionResult> PutProvincia(int id, Provincia provincia)
         {
-            if (id != localidad.Id)
+            if (id != provincia.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(localidad).State = EntityState.Modified;
+            _context.Entry(provincia).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +62,7 @@ namespace Backend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LocalidadExists(id))
+                if (!ProvinciaExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +75,36 @@ namespace Backend.Controllers
             return NoContent();
         }
 
-        // POST: api/Localidades
+        // POST: api/Provincias
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Localidad>> PostLocalidad(Localidad localidad)
+        public async Task<ActionResult<Provincia>> PostProvincia(Provincia provincia)
         {
-            _context.Localidades.Add(localidad);
+            _context.Provincias.Add(provincia);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLocalidad", new { id = localidad.Id }, localidad);
+            return CreatedAtAction("GetProvinicas", new { id = provincia.Id }, provincia);
         }
 
         // DELETE: api/Localidades/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLocalidad(int id)
+        public async Task<IActionResult> DeleteProvincia(int id)
         {
-            var localidad = await _context.Localidades.FindAsync(id);
-            if (localidad == null)
+            var provincia = await _context.Provincias.FindAsync(id);
+            if (provincia == null)
             {
                 return NotFound();
             }
-            localidad.IsDeleted = true;
-            _context.Entry(localidad).State = EntityState.Modified;
+            provincia.IsDeleted = true;
+            _context.Entry(provincia).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool LocalidadExists(int id)
+        private bool ProvinciaExists(int id)
         {
-            return _context.Localidades.Any(e => e.Id == id);
+            return _context.Provincias.Any(e => e.Id == id);
         }
 
         // devolvemos el total de localidades que no estan eliminadas

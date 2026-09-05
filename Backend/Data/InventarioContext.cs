@@ -71,9 +71,9 @@ namespace Backend.Data
             );
 
             modelBuilder.Entity<Provincia>().HasData(
-                new Provincia { Id = 1, Name = "Buenos Aires" },
-                new Provincia { Id = 2, Name = "Córdoba" },
-                new Provincia { Id = 3, Name = "Chile" }
+                new Provincia { Id = 1, Name = "Buenos Aires", PaisId = 1 },
+                new Provincia { Id = 2, Name = "Córdoba", PaisId = 1 },
+                new Provincia { Id = 3, Name = "Chile", PaisId = 1 }
             );
 
             modelBuilder.Entity<Pais>().HasData(
@@ -81,6 +81,21 @@ namespace Backend.Data
                 new Pais { Id = 2, Name = "Brasil" },
                 new Pais { Id = 3, Name = "Chile" }
             );
+
+            //desactivamos la eliminación en cascada para la relación entre
+            //Localidad y Provincia usando Fluent API
+            modelBuilder.Entity<Localidad>()
+                .HasOne(l => l.Provincia)
+                .WithMany()
+                .HasForeignKey(l => l.ProvinciaId)
+                .OnDelete(DeleteBehavior.Restrict);
+            //desactivamos la eliminación en cascada para la relación entre
+            //Provincia y Pais usando Fluent API
+            modelBuilder.Entity<Provincia>()
+                .HasOne(p => p.Pais)
+                .WithMany()
+                .HasForeignKey(p => p.PaisId)
+                .OnDelete(DeleteBehavior.Restrict);
 
 
             // configuramos la propiedad Created_at para que tenga
@@ -100,13 +115,7 @@ namespace Backend.Data
             modelBuilder.Entity<Provincia>()
                 .HasQueryFilter(p => !p.IsDeleted);
 
-            //Desactivamos la elimionacion en cascada para la relacion entre localidad y provincia usando Fluent API
-            modelBuilder.Entity<Localidad>()
-                .HasOne(l => l.Provincia)
-                .WithMany()
-                .HasForeignKey(l => l.ProvinciaId)
-                .OnDelete(DeleteBehavior.Restrict);
-
+            //Filters for Pais
             modelBuilder.Entity<Pais>()
                 .HasQueryFilter(p => !p.IsDeleted);
 
