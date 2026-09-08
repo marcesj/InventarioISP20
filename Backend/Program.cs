@@ -19,7 +19,7 @@ internal class Program
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
             .Build();
 
-        var cadenaConexion = configuration.GetConnectionString("mysqlRemote");
+        var cadenaConexion = configuration.GetConnectionString("postgresRemote");
         //var cadenaConexion = configuration.GetConnectionString("postgresRemote");
         builder.Services.AddDbContext<InventarioContext>(
             options => options.UseNpgsql(cadenaConexion));
