@@ -53,7 +53,7 @@ namespace Backend.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Cliente>().HasData(
-                 new Cliente { Id = 1, Firstname = "Juan", Lastname = "Perez",
+                 new Cliente { Id = 1, Firstname = "Marcelo", Lastname = "Albertissi",
                      Dni = "12345678", Address = "Calle Falsa 123", IsDeleted = false, LocalidadId=5 },
                  new Cliente { Id = 2, Firstname = "Maria", Lastname = "Gomez",
                      Dni = "87654321", Address = "Avenida Siempre Viva 456", IsDeleted = false, LocalidadId=5 },
