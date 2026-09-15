@@ -23,12 +23,18 @@ namespace Backend.Controllers
 
         // GET: api/Clientes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
+        public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes([FromQueryAttribute] 
+            string filtro="")
         {
+            filtro = filtro.ToUpper();
             return await _context.Clientes
             .Include(c => c.Localidad)
             .ThenInclude(l => l.Provincia)
             .ThenInclude(p => p.Pais)
+            .Where(c=>c.Firstname.ToUpper().Contains(filtro) 
+            || c.Lastname.ToUpper().Contains(filtro)
+            || c.Dni.Contains(filtro) 
+            || c.Address.ToUpper().Contains(filtro))
             .ToListAsync();
         }
 

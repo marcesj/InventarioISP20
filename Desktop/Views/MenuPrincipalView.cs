@@ -57,5 +57,11 @@ namespace Desktop.Views
             ProbandoNvidiaIA probandoNvidiaIA = new();
             probandoNvidiaIA.ShowDialog();
         }
+
+        private void SubMenuApiClientes_Click(object sender, EventArgs e)
+        {
+            ClientesApiView clientesApiView = new();
+            clientesApiView.ShowDialog();
+        }
     }
 }

@@ -35,9 +35,10 @@
             SubMenuClientes = new FontAwesome.Sharp.IconMenuItem();
             subMenuPaqueteria = new FontAwesome.Sharp.IconMenuItem();
             SubMenuProbandoGemini = new FontAwesome.Sharp.IconMenuItem();
+            subMenuNvidia = new FontAwesome.Sharp.IconMenuItem();
             SubMenuSalir = new FontAwesome.Sharp.IconMenuItem();
             SubMenuSalirDelSistema = new FontAwesome.Sharp.IconMenuItem();
-            subMenuNvidia = new FontAwesome.Sharp.IconMenuItem();
+            SubMenuApiClientes = new FontAwesome.Sharp.IconMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -53,7 +54,7 @@
             // 
             // iconMenuItem1
             // 
-            iconMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { SubMenuArticulos, categoriasToolStripMenuItem, SubMenuClientes, subMenuPaqueteria, SubMenuProbandoGemini, subMenuNvidia });
+            iconMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { SubMenuArticulos, categoriasToolStripMenuItem, SubMenuClientes, subMenuPaqueteria, SubMenuProbandoGemini, subMenuNvidia, SubMenuApiClientes });
             iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.House;
             iconMenuItem1.IconColor = Color.Black;
             iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -108,6 +109,16 @@
             SubMenuProbandoGemini.Text = "PROBANDO AI GEMINI";
             SubMenuProbandoGemini.Click += SubMenuProbandoGemini_Click;
             // 
+            // subMenuNvidia
+            // 
+            subMenuNvidia.IconChar = FontAwesome.Sharp.IconChar.None;
+            subMenuNvidia.IconColor = Color.Black;
+            subMenuNvidia.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            subMenuNvidia.Name = "subMenuNvidia";
+            subMenuNvidia.Size = new Size(244, 26);
+            subMenuNvidia.Text = "IA Nvidia";
+            subMenuNvidia.Click += subMenuNvidia_Click;
+            // 
             // SubMenuSalir
             // 
             SubMenuSalir.DropDownItems.AddRange(new ToolStripItem[] { SubMenuSalirDelSistema });
@@ -128,15 +139,15 @@
             SubMenuSalirDelSistema.Text = "Salir del Sistema";
             SubMenuSalirDelSistema.Click += SubMenuSalirDelSistema_Click;
             // 
-            // subMenuNvidia
+            // SubMenuApiClientes
             // 
-            subMenuNvidia.IconChar = FontAwesome.Sharp.IconChar.None;
-            subMenuNvidia.IconColor = Color.Black;
-            subMenuNvidia.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            subMenuNvidia.Name = "subMenuNvidia";
-            subMenuNvidia.Size = new Size(244, 26);
-            subMenuNvidia.Text = "IA Nvidia";
-            subMenuNvidia.Click += subMenuNvidia_Click;
+            SubMenuApiClientes.IconChar = FontAwesome.Sharp.IconChar.None;
+            SubMenuApiClientes.IconColor = Color.Black;
+            SubMenuApiClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            SubMenuApiClientes.Name = "SubMenuApiClientes";
+            SubMenuApiClientes.Size = new Size(244, 26);
+            SubMenuApiClientes.Text = "Api-Cliente";
+            SubMenuApiClientes.Click += SubMenuApiClientes_Click;
             // 
             // MenuPrincipalView
             // 
@@ -167,5 +178,6 @@
         private FontAwesome.Sharp.IconMenuItem subMenuPaqueteria;
         private FontAwesome.Sharp.IconMenuItem SubMenuProbandoGemini;
         private FontAwesome.Sharp.IconMenuItem subMenuNvidia;
+        private FontAwesome.Sharp.IconMenuItem SubMenuApiClientes;
     }
 }
