@@ -17,14 +17,27 @@ internal class Program
         var configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddEnvironmentVariables()
             .Build();
 
         var cadenaConexion = configuration.GetConnectionString("postgresRemote");
-        //var cadenaConexion = configuration.GetConnectionString("postgresRemote");
+        //var cadenaConexion = configuration.GetConnectionString("postgresLocal");
         builder.Services.AddDbContext<InventarioContext>(
             options => options.UseNpgsql(cadenaConexion));
 
+        // Configurar una política de CORS
+        builder.Services.AddCors(options =>
+{
+        options.AddPolicy("AllowSpecificOrigins",
+        builder => builder
+            .WithOrigins("http://localhost:5173", "http://sitioweb.com.ar")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
         var app = builder.Build();
+
+         app.UseCors("AllowSpecificOrigins");
 
         // Configure the HTTP request pipeline
         if (app.Environment.IsDevelopment())

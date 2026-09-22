@@ -63,6 +63,16 @@ namespace Desktop.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _457253329_8568748999811128_8558321184153530508_n {
+            get {
+                object obj = ResourceManager.GetObject("457253329_8568748999811128_8558321184153530508_n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Imagen_de_paqueteria {
             get {
                 object obj = ResourceManager.GetObject("Imagen de paqueteria", resourceCulture);

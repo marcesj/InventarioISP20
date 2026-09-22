@@ -23,13 +23,50 @@ namespace Backend.Controllers
 
         // GET: api/Localidades
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Localidad>>> GetLocalidades()
+        public async Task<ActionResult<IEnumerable<Localidad>>> GetLocalidades([FromQuery] string filtro = "")
         {
+            filtro = filtro.ToUpper();
             return await _context.Localidades
                              .Include(l => l.Provincia)
                              .ThenInclude(p => p.Pais)
+                             .Where(c => c.Name.ToUpper().Contains(filtro) || c.Provincia.Name.ToUpper().Contains(filtro) || c.Provincia.Name.ToUpper().Contains(filtro))
+                             .Where(c => !c.IsDeleted)
                              .ToListAsync();
         }
+
+        [HttpPut("restore/{id}")]
+        public async Task<IActionResult> RestoreLocalidad(int id)
+        {
+            var localidad = await _context.Localidades
+                .IgnoreQueryFilters()
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (localidad == null)
+            {
+                return NotFound();
+            }
+
+            localidad.IsDeleted = false;
+            _context.Entry(localidad).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        //GET: api/Localidades los borrados
+        [HttpGet("deleteds")]
+
+        public async Task<ActionResult<IEnumerable<Localidad>>> GetDeleteds()
+        {
+            return await _context.Localidades
+                             .IgnoreQueryFilters()
+                             .Include(l => l.Provincia)
+                             .ThenInclude(p => p.Pais)
+                             .Where(c => c.IsDeleted) //Filtramos solo las eliminadas
+                             .ToListAsync();
+        }
+
+
 
         // GET: api/Localidades/5
         [HttpGet("{id}")]

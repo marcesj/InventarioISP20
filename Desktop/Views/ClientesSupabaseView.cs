@@ -8,16 +8,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace Desktop.Views
 {
-    public partial class ClientesView : Form
+    public partial class ClientesSupabaseView : Form
     {
         ClientesService clientesService = new ClientesService();
         Cliente clienteModificado;
-        public ClientesView()
+        public ClientesSupabaseView()
         {
             InitializeComponent();
             LoadClientes();
@@ -99,6 +98,7 @@ namespace Desktop.Views
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+  
             //capturamos el cliente seleccionado en la grilla
             if (dataGridClientes.CurrentRow != null)
             {
@@ -135,8 +135,7 @@ namespace Desktop.Views
                 var clienteAEliminar = (Cliente)dataGridClientes.CurrentRow.DataBoundItem;
                 //preguntamos si está seguro de eliminar el cliente
                 var result = MessageBox.Show($"¿Está seguro de eliminar al cliente {clienteAEliminar.firstname} {clienteAEliminar.lastname}?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result == DialogResult.Yes)
-                {
+                if (result == DialogResult.Yes) {
                     //eliminamos el cliente
                     var clienteEliminado = await clientesService.DeleteClienteAsync((int)clienteAEliminar.id!);
                     if (clienteEliminado)

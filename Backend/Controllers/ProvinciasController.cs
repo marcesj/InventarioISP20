@@ -86,7 +86,7 @@ namespace Backend.Controllers
             return CreatedAtAction("GetProvinicas", new { id = provincia.Id }, provincia);
         }
 
-        // DELETE: api/Localidades/5
+        // DELETE: api/Provincias/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProvincia(int id)
         {

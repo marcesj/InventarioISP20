@@ -10,10 +10,13 @@ namespace Services.Models
     {
         public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
-
         public int PaisId { get; set; } = 0;
-
-        public Pais Pais { get; set; } = null;
+        public Pais? Pais { get; set; } = null;
         public bool IsDeleted { get; set; } = false;
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

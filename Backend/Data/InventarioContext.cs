@@ -1,5 +1,4 @@
-﻿using Backend.Controllers;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Services.Models;
 
 namespace Backend.Data
@@ -39,14 +38,7 @@ namespace Backend.Data
 
                 optionsBuilder.UseNpgsql(cadenaConexion);
             }
-            /*if (!optionsBuilder.IsConfigured)
-            {
-                 // Configurar la cadena de conexion a la base de datos PostgreSQL
-                 //optionBuilder.UseNpgsql("Host=localhost;Port=5432;Database=InventarioDB;Username=postgres;Password=1234");
-
-                // Configurar la cadena de conexion a la base de datos PostgreSQL
-                //optionBuilder.UseNpgsql("Host=up-de-fral-postgresql-3.db.run-on-seenode.com;Port=11550;Database=db_68mv3svm5lq8;Username=db_68mv3svm5lq8;Password=LchYWwoWOxBz3MxzD4NdQC8t");
-             }*/
+            
         }
         //creamos el metodo OnModelCreating para insertar datos
         //semillas en la tabla Clientes
@@ -73,13 +65,13 @@ namespace Backend.Data
             modelBuilder.Entity<Provincia>().HasData(
                 new Provincia { Id = 1, Name = "Buenos Aires", PaisId = 1 },
                 new Provincia { Id = 2, Name = "Córdoba", PaisId = 1 },
-                new Provincia { Id = 3, Name = "Chile", PaisId = 1 }
+                new Provincia { Id = 3, Name = "Santa Fe", PaisId = 1 }
             );
 
             modelBuilder.Entity<Pais>().HasData(
                 new Pais { Id = 1, Name = "Argentina" },
                 new Pais { Id = 2, Name = "Brasil" },
-                new Pais { Id = 3, Name = "Chile" }
+                new Pais { Id = 3, Name = "Uruguay" }
             );
 
             //desactivamos la eliminación en cascada para la relación entre
@@ -108,13 +100,14 @@ namespace Backend.Data
             // eliminados
             modelBuilder.Entity<Cliente>()
                 .HasQueryFilter(c => !c.IsDeleted);
+
+            //Filters for Localidad
             modelBuilder.Entity<Localidad>()
                 .HasQueryFilter(l => !l.IsDeleted);
 
             //Filters for Provincia
             modelBuilder.Entity<Provincia>()
                 .HasQueryFilter(p => !p.IsDeleted);
-
             //Filters for Pais
             modelBuilder.Entity<Pais>()
                 .HasQueryFilter(p => !p.IsDeleted);

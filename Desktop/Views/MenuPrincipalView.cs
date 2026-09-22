@@ -1,4 +1,6 @@
-namespace Desktop.Views
+using Desktop.Views;
+
+namespace Desktop
 {
     public partial class MenuPrincipalView : Form
     {
@@ -7,61 +9,59 @@ namespace Desktop.Views
             InitializeComponent();
         }
 
-        #region codigo del boton saludo
+        #region código del botón saludo
         private void BtnSaludo_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("¡Hola, bienvenido a mi aplicacion de escritorio!");
+            MessageBox.Show("Hola, bienvenido a mi aplicación de escritorio!");
         }
         #endregion
 
+        private void SubMenuSalirDelSistema_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); // this.Close();
+        }
 
         private void SubMenuArticulos_Click(object sender, EventArgs e)
         {
-            ArticulosView articulosView = new ArticulosView();
+            ArticulosView articulosView = new();
+            articulosView.MdiParent = this;
             articulosView.Show();
         }
 
-
-        private void SubMenuSalirDelSistema_Click(object sender, EventArgs e)
+        private void SubmenuCategorias_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CategoriasView categoriasView = new CategoriasView();
-            categoriasView.MdiParent = this;
+            CategoriasView categoriasView = new();
             categoriasView.ShowDialog();
         }
 
-        private void SubMenuClientes_Click(object sender, EventArgs e)
+        private void subMenuClientes_Click(object sender, EventArgs e)
         {
             ClientesView clientesView = new();
             clientesView.ShowDialog();
         }
 
-        private void subMenuPaqueteria_Click(object sender, EventArgs e)
+        private void subMenuClientesSupabase_Click(object sender, EventArgs e)
         {
-            PaqueteriaView paqueteriaView = new();
-            paqueteriaView.ShowDialog();
+            ClientesSupabaseView clientesSupabaseView = new();
+            clientesSupabaseView.ShowDialog();
         }
 
-        private void SubMenuProbandoGemini_Click(object sender, EventArgs e)
+        private void SubMenuPruebasGemini_Click(object sender, EventArgs e)
         {
-            ProbandoAI_Gemini probandogemini = new();
-            probandogemini.ShowDialog();
+            ProbandoIA_Gemini probandoIA_Gemini = new();
+            probandoIA_Gemini.ShowDialog();
         }
 
-        private void subMenuNvidia_Click(object sender, EventArgs e)
-        {
-            ProbandoNvidiaIA probandoNvidiaIA = new();
-            probandoNvidiaIA.ShowDialog();
-        }
-
-        private void SubMenuApiClientes_Click(object sender, EventArgs e)
+        private void clientesApiViewSubMenu_Click(object sender, EventArgs e)
         {
             ClientesApiView clientesApiView = new();
             clientesApiView.ShowDialog();
+        }
+
+        private void subMenuLocalidadesApi_Click(object sender, EventArgs e)
+        {
+            LocalidadesApiView LocalidadesApiView = new();
+            LocalidadesApiView.ShowDialog();
         }
     }
 }

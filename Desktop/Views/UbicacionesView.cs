@@ -16,5 +16,10 @@ namespace Desktop.Views
         {
             InitializeComponent();
         }
+
+        private void UbicacionesView_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

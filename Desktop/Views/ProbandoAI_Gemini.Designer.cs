@@ -1,6 +1,6 @@
 ﻿namespace Desktop.Views
 {
-    partial class ProbandoAI_Gemini
+    partial class ProbandoIA_Gemini
     {
         /// <summary>
         /// Required designer variable.
@@ -28,80 +28,78 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1Prompt = new TextBox();
+            TxtConsulta = new TextBox();
+            BtnEnviar = new Button();
             label1 = new Label();
-            button1Send = new Button();
-            textBox2RESPONSE = new TextBox();
+            TxtRespuesta = new TextBox();
             label2 = new Label();
             SuspendLayout();
             // 
-            // textBox1Prompt
+            // TxtConsulta
             // 
-            textBox1Prompt.Location = new Point(57, 41);
-            textBox1Prompt.Name = "textBox1Prompt";
-            textBox1Prompt.Size = new Size(292, 27);
-            textBox1Prompt.TabIndex = 0;
+            TxtConsulta.Location = new Point(122, 71);
+            TxtConsulta.Name = "TxtConsulta";
+            TxtConsulta.Size = new Size(512, 31);
+            TxtConsulta.TabIndex = 0;
+            // 
+            // BtnEnviar
+            // 
+            BtnEnviar.Location = new Point(675, 71);
+            BtnEnviar.Name = "BtnEnviar";
+            BtnEnviar.Size = new Size(112, 34);
+            BtnEnviar.TabIndex = 1;
+            BtnEnviar.Text = "Enviar";
+            BtnEnviar.UseVisualStyleBackColor = true;
+            BtnEnviar.Click += BtnEnviar_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(57, 9);
+            label1.Location = new Point(122, 33);
             label1.Name = "label1";
-            label1.Size = new Size(66, 20);
-            label1.TabIndex = 1;
-            label1.Text = "PROMPT";
+            label1.Size = new Size(164, 25);
+            label1.TabIndex = 2;
+            label1.Text = "Ingrese su consulta";
             // 
-            // button1Send
+            // TxtRespuesta
             // 
-            button1Send.Location = new Point(593, 41);
-            button1Send.Name = "button1Send";
-            button1Send.Size = new Size(94, 29);
-            button1Send.TabIndex = 2;
-            button1Send.Text = "SEND";
-            button1Send.UseVisualStyleBackColor = true;
-            button1Send.Click += button1Send_Click;
-            // 
-            // textBox2RESPONSE
-            // 
-            textBox2RESPONSE.Location = new Point(57, 130);
-            textBox2RESPONSE.Multiline = true;
-            textBox2RESPONSE.Name = "textBox2RESPONSE";
-            textBox2RESPONSE.Size = new Size(630, 211);
-            textBox2RESPONSE.TabIndex = 3;
-            textBox2RESPONSE.TextChanged += textBox2_TextChanged;
+            TxtRespuesta.Location = new Point(122, 164);
+            TxtRespuesta.Multiline = true;
+            TxtRespuesta.Name = "TxtRespuesta";
+            TxtRespuesta.Size = new Size(665, 242);
+            TxtRespuesta.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(57, 107);
+            label2.Location = new Point(122, 136);
             label2.Name = "label2";
-            label2.Size = new Size(80, 20);
+            label2.Size = new Size(92, 25);
             label2.TabIndex = 4;
-            label2.Text = "RESPONSE";
+            label2.Text = "Respuesta";
             // 
-            // ProbandoAI_Gemini
+            // ProbandoIA_Gemini
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(947, 493);
             Controls.Add(label2);
-            Controls.Add(textBox2RESPONSE);
-            Controls.Add(button1Send);
+            Controls.Add(TxtRespuesta);
             Controls.Add(label1);
-            Controls.Add(textBox1Prompt);
-            Name = "ProbandoAI_Gemini";
-            Text = "ProbandoAI_Gemini";
-            Load += ProbandoAI_Gemini_Load;
+            Controls.Add(BtnEnviar);
+            Controls.Add(TxtConsulta);
+            Name = "ProbandoIA_Gemini";
+            Text = "ProbandoIA_Gemini";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBox1Prompt;
+        private TextBox TxtConsulta;
+        private Button BtnEnviar;
         private Label label1;
-        private Button button1Send;
-        private TextBox textBox2RESPONSE;
+        private TextBox TxtRespuesta;
         private Label label2;
     }
 }

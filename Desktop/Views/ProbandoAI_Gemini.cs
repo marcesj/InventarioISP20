@@ -1,4 +1,4 @@
-﻿using Desktop.Services;
+﻿using Desktop.Models;
 using DotNetEnv;
 using System;
 using System.Collections.Generic;
@@ -13,60 +13,57 @@ using System.Windows.Forms;
 
 namespace Desktop.Views
 {
-    public partial class ProbandoAI_Gemini : Form
+    public partial class ProbandoIA_Gemini : Form
     {
-        public ProbandoAI_Gemini()
+        public ProbandoIA_Gemini()
         {
             InitializeComponent();
         }
 
-        private void ProbandoAI_Gemini_Load(object sender, EventArgs e)
+        private async void BtnEnviar_Click(object sender, EventArgs e)
         {
+            TxtRespuesta.Text = "Procesando consulta, por favor espere...";
 
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private async void button1Send_Click(object sender, EventArgs e)
-        {
             Env.Load("../../../");
             var apikey = Environment.GetEnvironmentVariable("APIKEY_GEMINI");
             if (apikey == null)
             {
-                textBox2RESPONSE.Text = "No se encontro la APIKEY en las variables del entorno.";
+                TxtRespuesta.Text = "No se encontró la APIKEY en las variables de entorno.";
                 return;
             }
-            //textBox2RESPONSE.Text = $"La APIKEY ES: {apikey}";
 
+            if (string.IsNullOrWhiteSpace(TxtConsulta.Text))
+            {
+                TxtRespuesta.Text = "Por favor, ingrese una consulta antes de enviar.";
+                return;
+            }
             //creamos un hhtpclient para hacer la peticion a la api de gemini con using
             using (var client = new HttpClient())
             {
-                textBox2RESPONSE.Text = "Procesando su Consulta";
                 var url = "https://generativelanguage.googleapis.com/v1beta/interactions";
+                client.DefaultRequestHeaders.Add("x-goog-api-key", $"{apikey}");
+
                 var requestBody = new
                 {
                     model = "gemini-3.5-flash",
-                    input = textBox1Prompt.Text
+                    input = TxtConsulta.Text
                 };
-                client.DefaultRequestHeaders.Add("x-goog-api-key", $"{apikey}");
 
                 var response = await client.PostAsJsonAsync(url, requestBody);
                 if (response == null)
                 {
-                    textBox2RESPONSE.Text = "No se recibió respuesta de la API.";
+                    TxtRespuesta.Text = "No se recibió respuesta de la API.";
                     return;
                 }
 
-                GeminiService? responseGemini = await response.Content.ReadFromJsonAsync<GeminiService>();
+                ResponseGemini? responseGemini = await response.Content.ReadFromJsonAsync<ResponseGemini>();
                 if (responseGemini == null)
                 {
-                    textBox2RESPONSE.Text = "No se pudo deserializar la respuesta de la API.";
+                    TxtRespuesta.Text = "No se pudo deserializar la respuesta de la API.";
                     return;
                 }
-                textBox2RESPONSE.Text = responseGemini.steps[1].content[0].text;
+                TxtRespuesta.Text = responseGemini.steps[1].content[0].text;
+
             }
         }
     }

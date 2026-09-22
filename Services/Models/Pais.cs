@@ -8,8 +8,13 @@ namespace Services.Models
 {
     public class Pais
     {
-        public int? Id { get; set; }
+        public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
         public bool IsDeleted { get; set; } = false;
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

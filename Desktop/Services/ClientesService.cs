@@ -3,53 +3,53 @@ using DotNetEnv;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using System.Threading.Tasks;
-using System.Windows.Documents;
+using static System.Windows.Forms.Design.AxImporter;
+
 
 namespace Desktop.Services
 {
     public class ClientesService
     {
         HttpClient httpClient;
-        const string urlApi = "https://oyoilrybafmqmrcpydej.supabase.co/rest/v1/clientes"; // Endpoint
+        string urlApi = "https://oyoilrybafmqmrcpydej.supabase.co/rest/v1/clientes"; // Endpoint
+        JsonSerializerOptions options;
+
 
         public ClientesService()
         {
-            Env.Load("../../../");
-            var apikey = Environment.GetEnvironmentVariable("apikey_supabase");
+            httpClient = SettingHttpClient();
+            options = SettingJsonSerializer();
 
-            // Inicializar el HttpClient y configurar la base address y los headers necesarios
-            httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(urlApi);
-            // agregar la apikey y el header de aceptacion de json
-            httpClient.DefaultRequestHeaders.Add("apikey", "sb_secret_EZX7AgWZe3qe_9mNdWne1g_ZXBj20Vx");
-            httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
         }
 
         public async Task<List<Cliente>?> GetAllAsync()
         {
             try
             {
-                var response = await httpClient.GetAsync(urlApi);
+                var response = await httpClient.GetAsync("");
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    var clientes = System.Text.Json.JsonSerializer.Deserialize<List<Models.Cliente>>(json);
+                    var clientes = JsonSerializer.Deserialize<List<Cliente>>(json);
                     return clientes;
                 }
                 else
                 {
-                    throw new Exception("Error al obtener los clientes" + response.ReasonPhrase);
+                    MessageBox.Show("Error al obtener los clientes: " + response.ReasonPhrase);
+                    return null;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al obtener clientes desde la Api: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error obtener los clientes desde la Api: " + ex.Message);
                 return null;
+
             }
         }
 
@@ -57,22 +57,24 @@ namespace Desktop.Services
         {
             try
             {
-                string filtrosupabase = $"?or=(firstname.ilike.*{filter}*,lastname.ilike.*{filter}*, dni.ilike.*{filter}*)";
+                string filtrosupabase = $"?or=(firstname.ilike.*{filter}*,lastname.ilike.*{filter}*, dni.ilike.*{filter}*,address.ilike.*{filter}*)";
                 var response = await httpClient.GetAsync(filtrosupabase);
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    var clientes = System.Text.Json.JsonSerializer.Deserialize<List<Models.Cliente>>(json);
+                    var clientes = JsonSerializer.Deserialize<List<Cliente>>(json);
                     return clientes;
+
                 }
                 else
                 {
-                    throw new Exception("Error al obtener los clientes" + response.ReasonPhrase);
+                    MessageBox.Show("Error al obtener los clientes: " + response.ReasonPhrase);
+                    return null;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al obtener clientes desde la Api: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al obtener clientes desde la Api:" + ex.Message);
                 return null;
             }
         }
@@ -82,11 +84,6 @@ namespace Desktop.Services
             try
             {
                 // Configuramos las opciones de serialización para ignorar propiedades nulas y hacer que la búsqueda de propiedades sea insensible a mayúsculas
-                var options = new JsonSerializerOptions
-                {
-                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                    PropertyNameCaseInsensitive = true,
-                };
 
                 var json = JsonSerializer.Serialize(cliente, options);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -108,6 +105,32 @@ namespace Desktop.Services
             }
 
         }
+
+
+        public async Task<bool> DeleteClienteAsync(int id)
+        {
+            try
+            {
+                string urlSelectedId = $"?id=eq.{id}";
+                var response = await httpClient.DeleteAsync(urlSelectedId);
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Error al eliminar el cliente: " + response.ReasonPhrase);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el cliente desde la Api: " + ex.Message);
+                return false;
+            }
+        }
+
+
 
         public async Task<bool> UpdateClienteAsync(Cliente cliente)
         {
@@ -140,5 +163,38 @@ namespace Desktop.Services
                 return false;
             }
         }
+
+        private HttpClient SettingHttpClient()
+        {
+            Env.Load("../../../");
+            var apikey = Environment.GetEnvironmentVariable("SUPABASE_KEY");
+            //instanciamos el httpClient y lo configuramos para poder utilizarlo en cada uno de los métodos
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(urlApi);
+            //agregamos apikey de la url
+            httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+            httpClient.DefaultRequestHeaders.Add("apikey", apikey);
+            return httpClient;
+        }
+
+        private JsonSerializerOptions SettingJsonSerializer()
+        {
+            return new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                PropertyNameCaseInsensitive = true,
+            };
+        }
     }
-}  
+}
+
+
+
+
+
+
+
+
+
+
+        

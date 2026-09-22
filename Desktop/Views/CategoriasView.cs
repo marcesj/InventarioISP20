@@ -16,5 +16,10 @@ namespace Desktop.Views
         {
             InitializeComponent();
         }
+
+        private void CategoriasView_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

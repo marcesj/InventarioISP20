@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             ListAlumnos = new ListBox();
-            button1 = new Button();
+            BtnAgregarAlumno = new Button();
             SuspendLayout();
             // 
             // ListAlumnos
             // 
             ListAlumnos.FormattingEnabled = true;
-            ListAlumnos.Location = new Point(152, 88);
+            ListAlumnos.ItemHeight = 25;
+            ListAlumnos.Location = new Point(73, 58);
             ListAlumnos.Name = "ListAlumnos";
-            ListAlumnos.Size = new Size(200, 44);
+            ListAlumnos.Size = new Size(658, 179);
             ListAlumnos.TabIndex = 0;
             // 
-            // button1
+            // BtnAgregarAlumno
             // 
-            button1.Location = new Point(190, 257);
-            button1.Name = "button1";
-            button1.Size = new Size(175, 64);
-            button1.TabIndex = 1;
-            button1.Text = "Agregar Alumno";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            BtnAgregarAlumno.Location = new Point(322, 287);
+            BtnAgregarAlumno.Name = "BtnAgregarAlumno";
+            BtnAgregarAlumno.Size = new Size(167, 34);
+            BtnAgregarAlumno.TabIndex = 1;
+            BtnAgregarAlumno.Text = "Agregar alumno";
+            BtnAgregarAlumno.UseVisualStyleBackColor = true;
             // 
             // ArticulosView
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button1);
+            Controls.Add(BtnAgregarAlumno);
             Controls.Add(ListAlumnos);
             Name = "ArticulosView";
             Text = "ArticulosView";
@@ -65,6 +65,6 @@
         #endregion
 
         private ListBox ListAlumnos;
-        private Button button1;
+        private Button BtnAgregarAlumno;
     }
 }
